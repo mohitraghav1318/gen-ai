@@ -1,3 +1,6 @@
+@use "./styles/button.scss";
+
+
 * {
   margin: 0%;
   padding: 0%;
@@ -9,4 +12,6 @@ body,
 #root {
   width: 100%;
   background-color: rgb(28, 27, 27);
+  color: whitesmoke;
+  font-family: 'system-ui', sans-serif;
 }
