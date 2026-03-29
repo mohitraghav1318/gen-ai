@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router'
 import '../auth.form.scss'
 import { useAuth } from '../hooks/useAuth'
+import LoadingScreen from '../../../components/common/LoadingScreen'
 
 const Register = () => {
   const navigate = useNavigate()
@@ -41,9 +42,11 @@ const Register = () => {
 
   if (loading) {
     return (
-      <main className='auth-page'>
-        <h1>Loading...</h1>
-      </main>
+      <LoadingScreen
+        compact
+        title='Creating your account...'
+        subtitle='Setting up your profile so you can start generating interview plans.'
+      />
     )
   }
 

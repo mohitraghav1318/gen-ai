@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router'
 import '../auth.form.scss'
 import { useAuth } from '../hooks/useAuth'
+import LoadingScreen from '../../../components/common/LoadingScreen'
 
 const Login = () => {
   const { loading, handleLogin } = useAuth()
@@ -38,9 +39,11 @@ const Login = () => {
 
   if (loading) {
     return (
-      <main className='auth-page'>
-        <h1>Loading...</h1>
-      </main>
+      <LoadingScreen
+        compact
+        title='Signing you in...'
+        subtitle='Syncing your account preferences and preparing your dashboard.'
+      />
     )
   }
 

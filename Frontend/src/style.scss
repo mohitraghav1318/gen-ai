@@ -47,19 +47,6 @@ select {
   color: inherit;
 }
 
-.loading-screen {
-  width: 100%;
-  min-height: 56vh;
-  display: grid;
-  place-items: center;
-}
-
-.loading-screen h1 {
-  font-size: clamp(1.2rem, 2vw, 1.5rem);
-  color: var(--color-text-soft);
-  font-weight: 600;
-}
-
 .highlight {
   color: var(--color-accent);
 }

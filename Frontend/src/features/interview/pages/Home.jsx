@@ -2,26 +2,41 @@ import React, { useRef, useState } from 'react'
 import { Link, useNavigate } from 'react-router'
 import { useInterview } from '../hooks/useInterview.js'
 import '../style/home.scss'
+import LoadingScreen from '../../../components/common/LoadingScreen.jsx'
 
 const Home = () => {
   const { loading, generateReport, reports } = useInterview()
   const [jobDescription, setJobDescription] = useState('')
   const [selfDescription, setSelfDescription] = useState('')
+  const [resumeFileName, setResumeFileName] = useState('')
+  const [formError, setFormError] = useState('')
   const resumeInputRef = useRef()
 
   const navigate = useNavigate()
 
   const handleGenerateReport = async () => {
-    const resumeFile = resumeInputRef.current.files[0]
-    const data = await generateReport({ jobDescription, selfDescription, resumeFile })
-    navigate(`/interview/${data._id}`)
+    try {
+      setFormError('')
+      const resumeFile = resumeInputRef.current.files[0]
+      const data = await generateReport({ jobDescription, selfDescription, resumeFile })
+
+      if (!data?._id) {
+        setFormError('Unable to generate interview report. Please try again.')
+        return
+      }
+
+      navigate(`/interview/${data._id}`)
+    } catch (error) {
+      setFormError(error.message)
+    }
   }
 
   if (loading) {
     return (
-      <main className='loading-screen'>
-        <h1>Loading your interview plan...</h1>
-      </main>
+      <LoadingScreen
+        title='Building your interview plan...'
+        subtitle='Analyzing your inputs and preparing focused guidance for your target role.'
+      />
     )
   }
 
@@ -86,8 +101,19 @@ const Home = () => {
                   </svg>
                 </span>
                 <p className='dropzone__title'>Click to upload or drag & drop</p>
-                <p className='dropzone__subtitle'>PDF or DOCX (Max 5MB)</p>
-                <input ref={resumeInputRef} hidden type='file' id='resume' name='resume' accept='.pdf,.docx' />
+                <p className='dropzone__subtitle'>{resumeFileName || 'PDF only (Max 5MB)'}</p>
+                <input
+                  ref={resumeInputRef}
+                  hidden
+                  type='file'
+                  id='resume'
+                  name='resume'
+                  accept='.pdf,application/pdf'
+                  onChange={(event) => {
+                    const selectedFile = event.target.files?.[0]
+                    setResumeFileName(selectedFile?.name || '')
+                  }}
+                />
               </label>
             </div>
 
@@ -128,7 +154,7 @@ const Home = () => {
         </div>
 
         <div className='interview-card__footer'>
-          <span className='footer-info'>AI-Powered Strategy Generation • Approx 30s</span>
+          <span className='footer-info'>AI-Powered Strategy Generation | Approx 30s</span>
           <button onClick={handleGenerateReport} className='generate-btn'>
             <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='currentColor'>
               <path d='M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z' />
@@ -136,6 +162,7 @@ const Home = () => {
             Generate My Interview Strategy
           </button>
         </div>
+        {formError && <p className='form-error'>{formError}</p>}
       </div>
 
       {reports.length > 0 && (
