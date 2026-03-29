@@ -1,0 +1,65 @@
+@use './style/button.scss';
+
+:root {
+  --color-bg: whitesmoke;
+  --color-surface: #ffffff;
+  --color-surface-muted: #f7f4f2;
+  --color-text: #1f1b1a;
+  --color-text-soft: #5f5856;
+  --color-border: #dfd8d3;
+  --color-accent: #a50e05;
+  --color-accent-strong: #870b04;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --shadow-soft: 0 14px 32px -24px rgba(31, 27, 26, 0.42);
+  --font-sans: 'Montserrat', 'Segoe UI', Tahoma, sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  min-height: 100%;
+}
+
+body {
+  background:
+    radial-gradient(circle at 5% 0%, rgba(165, 14, 5, 0.12), transparent 38%),
+    radial-gradient(circle at 95% 100%, rgba(165, 14, 5, 0.1), transparent 42%),
+    var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  line-height: 1.45;
+}
+
+a,
+button,
+input,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+.loading-screen {
+  width: 100%;
+  min-height: 56vh;
+  display: grid;
+  place-items: center;
+}
+
+.loading-screen h1 {
+  font-size: clamp(1.2rem, 2vw, 1.5rem);
+  color: var(--color-text-soft);
+  font-weight: 600;
+}
+
+.highlight {
+  color: var(--color-accent);
+}

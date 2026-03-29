@@ -1,0 +1,133 @@
+.info-page {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-soft);
+  padding: clamp(1.2rem, 2.2vw, 2rem);
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+}
+
+.info-page__hero {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.info-page__eyebrow {
+  width: fit-content;
+  padding: 0.2rem 0.62rem;
+  border: 1px solid rgba(165, 14, 5, 0.22);
+  background: rgba(165, 14, 5, 0.09);
+  color: var(--color-accent);
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.info-page h1 {
+  font-size: clamp(1.5rem, 3vw, 2.15rem);
+  letter-spacing: -0.01em;
+}
+
+.info-page p {
+  color: var(--color-text-soft);
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0.95rem;
+}
+
+.info-card {
+  border: 1px solid var(--color-border);
+  background: var(--color-surface-muted);
+  border-radius: var(--radius-md);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.info-card h2,
+.info-card h3 {
+  font-size: 1rem;
+}
+
+.info-card p {
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+
+.info-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.info-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  color: var(--color-text-soft);
+}
+
+.info-list svg {
+  width: 1.05rem;
+  height: 1.05rem;
+  color: var(--color-accent);
+  flex-shrink: 0;
+}
+
+.preference-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  padding-bottom: 0.8rem;
+}
+
+.preference-row:last-child {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+
+.preference-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.preference-copy strong {
+  font-size: 0.92rem;
+}
+
+.preference-copy span {
+  font-size: 0.78rem;
+  color: var(--color-text-soft);
+}
+
+.preference-pill {
+  border-radius: 999px;
+  padding: 0.34rem 0.72rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.preference-pill--on {
+  background: rgba(165, 14, 5, 0.12);
+  color: var(--color-accent);
+}
+
+.preference-pill--off {
+  background: rgba(31, 27, 26, 0.1);
+  color: var(--color-text-soft);
+}
